@@ -680,14 +680,6 @@ impl Domain {
     }
 
     fn parse(domain: &str, list: &List, check_syntax: bool) -> Result<Domain> {
-        if check_syntax && !Self::has_valid_syntax(domain) {
-            return Err(ErrorKind::InvalidDomain(domain.into()).into());
-        }
-        let input = domain.trim_right_matches('.');
-        let (domain, res) = domain_to_unicode(input);
-        if let Err(errors) = res {
-            return Err(ErrorKind::Uts46(errors).into());
-        }
         Self::find_possible_matches(&domain, list)
             .and_then(|res| Self::find_match(input, &domain, res))
     }
