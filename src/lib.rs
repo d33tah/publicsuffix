@@ -681,7 +681,7 @@ impl Domain {
 
     fn parse(domain: &str, list: &List, check_syntax: bool) -> Result<Domain> {
         Self::find_possible_matches(&domain, list)
-            .and_then(|res| Self::find_match(input, &domain, res))
+            .and_then(|res| Self::find_match(domain, &domain, res))
     }
 
     /// Gets the root domain portion if any
