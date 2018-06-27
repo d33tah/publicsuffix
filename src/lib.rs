@@ -70,6 +70,9 @@ extern crate regex;
 extern crate idna;
 extern crate url;
 
+extern crate indexmap;
+use indexmap::IndexMap;
+
 pub mod errors;
 
 #[cfg(feature = "remote_list")]
@@ -85,7 +88,6 @@ use std::net::TcpStream;
 use std::io::Read;
 #[cfg(feature = "remote_list")]
 use std::io::Write;
-use std::collections::HashMap;
 use std::net::IpAddr;
 use std::str::FromStr;
 use std::fmt;
@@ -115,7 +117,7 @@ struct Suffix {
 /// `fetch` or `from_url` to download updates at least once a week.
 #[derive(Debug)]
 pub struct List {
-    rules: HashMap<String, Vec<Suffix>>,
+    rules: IndexMap<String, Vec<Suffix>>,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -312,7 +314,7 @@ impl List {
     /// that to parse domain names and email addresses.
     pub fn empty() -> List {
         List {
-            rules: HashMap::new(),
+            rules: IndexMap::new(),
         }
     }
 

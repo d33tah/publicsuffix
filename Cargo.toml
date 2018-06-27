@@ -19,6 +19,7 @@ idna = "0.1"
 regex = "0.2"
 url = "1.5"
 lazy_static = "1.0"
+indexmap = "*"
 
 [dependencies.native-tls]
 version = "0.1"
